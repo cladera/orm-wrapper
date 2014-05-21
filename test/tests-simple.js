@@ -1,5 +1,5 @@
 'use strict';
-
+/* jshint unused:false */
 var should = require('should');
 var path = require('path');
 
@@ -14,7 +14,6 @@ var test_config = {
 var test_options = {
   modelsPath: path.join(__dirname, '/models-simple')
 };
-
 describe('ORMWrapper Simple', function(){
   var wrapper;
   beforeEach(function(){
@@ -23,11 +22,11 @@ describe('ORMWrapper Simple', function(){
   describe('Wrapper connect', function(){
     it('should connect to local mysql', function(done){
       wrapper.connect(test_config,function(err){
-        (err === null).should.be.true;
-        (wrapper.connections.db).should.be.ok;
+        (err === null).should.equal(true);
+        (wrapper.connections.db).should.be.type('object');
         wrapper.close(function(err){
-          (err === null).should.be.true;
-          (wrapper.connections.db === undefined).should.be.true;
+          (err === null).should.equal(true);
+          (wrapper.connections.db === undefined).should.equal(true);
           done();
         });
       });
@@ -73,14 +72,14 @@ describe('Auto-defining models', function(){
   });
   describe('Model import', function(){
     it('should import Test table model', function(done){
-      (wrapper.models.Test).should.be.ok;
+      (wrapper.models.Test).should.be.type('function');
       var Test = wrapper.model('Test');
-      (Test).should.be.ok;
+      (Test).should.be.type('function');
       var test = {
         name: 'Test value'
       };
       Test.create(test, function(err, results){
-        (err === null).should.be.true;
+        (err === null).should.equal(true);
         Test.get(results.id, function(err, result){
           (result.name).should.equal('Test value');
           done();

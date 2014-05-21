@@ -23,6 +23,14 @@ module.exports = function (grunt) {
         src: ['test/**/*.js']
       }
     },
+    mochaTest: {
+      test: {
+        options: {
+          reporter: 'spec'
+        },
+        src: ['test/**/*.js']
+      }
+    },
     watch: {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
@@ -34,12 +42,13 @@ module.exports = function (grunt) {
       },
       test: {
         files: '<%= jshint.test.src %>',
-        tasks: ['jshint:test', 'mocha']
+        tasks: ['jshint:test', 'mochaTest']
       }
     }
   });
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'mocha']);
+  grunt.registerTask('default', ['jshint', 'mochaTest']);
+  grunt.registerTask('test', ['jshint:test','mochaTest']);
 
 };

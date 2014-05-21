@@ -2,7 +2,7 @@
  * Created by cgcladera on 21/05/14.
  */
 'use strict';
-
+/* jshint unused:false */
 var should = require('should');
 var path = require('path');
 
@@ -39,13 +39,13 @@ describe('ORMWrapper Multi-connection', function(){
     it('should connect to local mysql', function(done){
       wrapper.connect(test_config,function(err){
         console.log(err);
-        (err === null).should.be.true;
-        (wrapper.connections.db1).should.be.ok;
-        (wrapper.connections.db2).should.be.ok;
+        (err === null).should.equal(true);
+        (wrapper.connections.db1).should.be.type('object');
+        (wrapper.connections.db2).should.be.type('object');
         wrapper.close(function(err){
-          (err === null).should.be.true;
-          (wrapper.connections.db1 === undefined).should.be.true;
-          (wrapper.connections.db2 === undefined).should.be.true;
+          (err === null).should.equal(true);
+          (wrapper.connections.db1 === undefined).should.equal(true);
+          (wrapper.connections.db2 === undefined).should.equal(true);
           done();
         });
       });
@@ -110,12 +110,12 @@ describe('Auto-defining models', function(){
   });
   describe('Model import', function(){
     it('should import Test table model', function(done){
-      (wrapper.models.Test1).should.be.ok;
-      (wrapper.models.Test2).should.be.ok;
+      (wrapper.models.Test1).should.be.type('function');
+      (wrapper.models.Test2).should.be.type('function');
       var Test1 = wrapper.model('Test1');
-      (Test1).should.be.ok;
+      (Test1).should.be.type('function');
       var Test2 = wrapper.model('Test2');
-      (Test2).should.be.ok;
+      (Test2).should.be.type('function');
       var test1 = {
         name: 'Test 1 value'
       };
@@ -123,11 +123,11 @@ describe('Auto-defining models', function(){
         name: 'Test 2 value'
       };
       Test1.create(test1, function(err, results){
-        (err === null).should.be.true;
+        (err === null).should.be.equal(true);
         Test1.get(results.id, function(err, result){
           (result.name).should.equal('Test 1 value');
           Test2.create(test2, function(err, results){
-            (err === null).should.be.true;
+            (err === null).should.be.equal(true);
             Test2.get(results.id, function(err, result){
               (result.name).should.equal('Test 2 value');
               done();
