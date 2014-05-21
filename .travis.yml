@@ -4,5 +4,6 @@ node_js:
   - '0.8'
 before_script:
   - npm install -g grunt-cli
+  - npm install -g mocha
   - mysql -e 'create database orm_wrapper_test;'
   - mysql -e 'create database orm_wrapper_test2;'
