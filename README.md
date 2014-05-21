@@ -18,7 +18,7 @@ Install the module with: `npm install orm-wrapper`
 |       +-- model.js
 |       ...
 +-- index.js
-...`
+...
 ```
 
 
