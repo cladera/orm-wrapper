@@ -8,6 +8,7 @@ Install the module with: `npm install orm-wrapper`
 
 ### Models directory structure
 
+```
 . //Project root
 +-- models
 |   +-- db1
@@ -17,7 +18,9 @@ Install the module with: `npm install orm-wrapper`
 |       +-- model.js
 |       ...
 +-- index.js
-...
+...`
+```
+
 
 ### Example (index.js)
 
