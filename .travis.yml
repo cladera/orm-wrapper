@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+  - '0.10'
+  - '0.8'
+before_script:
+  - npm install -g grunt-cli
+  - mysql -e 'create database orm_wrapper_test;'
+  - mysql -e 'create database orm_wrapper_test2;'
