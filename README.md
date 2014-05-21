@@ -6,6 +6,21 @@ Javascript interface which allows you manage multiple database connections for n
 ## Getting Started
 Install the module with: `npm install orm-wrapper`
 
+### Models directory structure
+
+. //Project root
++-- models
+|   +-- db1
+|       +-- model.js
+|       ...
+|   +-- db2
+|       +-- model.js
+|       ...
++-- index.js
+...
+
+### Example (index.js)
+
 ```javascript
 var orm = require('orm-wrapper');
 var config = {
