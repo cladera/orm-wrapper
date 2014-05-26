@@ -34,7 +34,7 @@ describe('ORMWrapper Simple', function(){
   });
 });
 
-describe('Auto-defining models', function(){
+describe('Working with models', function(){
   var wrapper = require('../index');
 
   beforeEach(function(done){
@@ -83,6 +83,25 @@ describe('Auto-defining models', function(){
         Test.get(results.id, function(err, result){
           (result.name).should.equal('Test value');
           done();
+        });
+      });
+    });
+  });
+  describe('ORM statics methods', function(){
+    it('should find rows with ids greater than 1', function(done){
+      wrapper.models.Test.create({
+        name: 'Row 1'
+      }, function(err){
+        (err === null).should.equal(true);
+        wrapper.models.Test.create({
+          name: 'Row 2'
+        }, function(err){
+          wrapper.models.Test.find({id: wrapper.static.gt(1)}, function(err, results){
+            (err === null).should.equal(true);
+            (results.length).should.equal(1);
+            (results[0].name).should.equal('Row 2');
+            done();
+          });
         });
       });
     });

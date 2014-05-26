@@ -38,7 +38,6 @@ describe('ORMWrapper Multi-connection', function(){
   describe('Wrapper connect', function(){
     it('should connect to local mysql', function(done){
       wrapper.connect(test_config,function(err){
-        console.log(err);
         (err === null).should.equal(true);
         (wrapper.connections.db1).should.be.type('object');
         (wrapper.connections.db2).should.be.type('object');
@@ -54,7 +53,7 @@ describe('ORMWrapper Multi-connection', function(){
 });
 
 
-describe('Auto-defining models', function(){
+describe('Working with models', function(){
   var wrapper = require('../index');
 
   beforeEach(function(done){
