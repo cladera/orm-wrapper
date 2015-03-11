@@ -1,6 +1,6 @@
 {
   "name": "orm-wrapper",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "main": "lib/orm-wrapper.js",
   "description": "ORM Multiconnection wrapper",
   "homepage": "https://github.com/cladera/orm-wrapper",
